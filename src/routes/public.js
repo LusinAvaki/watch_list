@@ -1,16 +1,16 @@
 const router = require("express").Router();
 
 const usersService = require('../services/users');
-const usersValidations = require('.../middlewares/validations/users');
+const usersValidations = require('../middleware/validation/users');
 
 router.post('/sign-up',
-    usersValidations.validateRegisterUser,
-    usersService.registerUser
+  usersValidations.validateRegisterUser,
+  usersService.addUser
 );
 
 router.post('/sign-in',
-    usersValidations.validateUserSignIn,
-    usersService.signInUser
+  usersValidations.validateSignInUser,
+  usersService.signInUser
 );
 
 module.exports = router;

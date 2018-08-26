@@ -4,23 +4,26 @@ const moviesValidations = require('../middleware/validation/movies');
 const movieWatch = require('../services/movies/index');
 
 router.get('/',
-    moviesValidations.validateGetMovie,
-    movieWatch.listMovies);
+  movieWatch.listMovies
+);
 
 router.get('/:movieId',
-    moviesValidations.validateGetMovie,
-    movieWatch.getMovie);
+  moviesValidations.validateGetMovie,
+  movieWatch.getMovie
+);
 
 router.post('/',
-    moviesValidations.validateRegisterMovie,
-    movieWatch.addMovie);
+  moviesValidations.validateRegisterMovie,
+  movieWatch.addMovie
+);
 
 router.patch('/:movieId',
-
-    movieWatch.updateMovie);
+  movieWatch.updateMovie
+);
 
 router.delete('/:movieId',
-    moviesValidations.validateRemoveMovie,
-    movieWatch.removeMovie);
+  moviesValidations.validateRemoveMovie,
+  movieWatch.removeMovie
+);
 
 module.exports = router;

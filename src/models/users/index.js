@@ -11,34 +11,39 @@ const UsersSchema = new Schema({
     lastName: String,
     userName: String,
     password: {
-        type: String,
-        required: true
+      type: String,
+      required: true
     },
     email: {
-        type: String,
-        unique: true,
-        index: true
+      type: String,
+      unique: true,
+      index: true
+    },
+    token: {
+      type: String,
+      index: true
     },
     watchList: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Movies'
+      type: Schema.Types.ObjectId,
+      ref: 'Movies'
     }]
-});
+  })
+;
 
 UsersSchema.pre('save', function (next) {
-    const self = this;
-
-    if (self.isModified('password') === true) {
-        bcrypt.hash(self.password, 10)
-            .then((hash) => {
-                self.password = hash;
-                next();
-            })
-            .catch(next)
-    } else {
-        next()
-    }
-
+  const self = this;
+  
+  if (self.isModified('password') === true) {
+    bcrypt.hash(self.password, 10)
+      .then((hash) => {
+        self.password = hash;
+        next();
+      })
+      .catch(next)
+  } else {
+    next()
+  }
+  
 });
 
 
